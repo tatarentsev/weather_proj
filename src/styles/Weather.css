@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(51, 51, 233);
+}
+
+.box {
+    display: grid;
+    justify-items: center;
+    background-color: whitesmoke;
+    border-radius: 5%;
+    margin-top: 150px;
+    padding: 50px;
+}
+
+#weather_icon {
+    font-size: 70px;
+    padding-top: 20px;
+}
+
+.city_name {
+    width: 150px;
+    font-size: 1.5em;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.city_name, .city_clouds {
+    border-bottom: 1px solid grey;
+}
+
+.city_deg {
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.city_clouds {
+    text-align: center;
+    font-size: 1.3em;
+    padding-top: 40px;
+}
