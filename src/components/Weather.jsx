@@ -23,6 +23,20 @@ export default function Weather( {cityName} ) {
             windSpeed: resp.data.wind.speed}) // скорость ветра
         });
       }, [setState]);
+
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          document.getElementById("location").innerHTML = "Геолокация не поддерживается.";
+        }
+      }
+    
+      function showPosition(position) {
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+        document.getElementById("location").innerHTML = "Широта: " + lat + "<br>Долгота: " + lon;
+      }
       
     const weatherIcon = document.querySelectorAll('#weather_icon');
 
@@ -37,6 +51,7 @@ export default function Weather( {cityName} ) {
     return (
         <div style={{display: "flex", justifyContent: "center"}}>
             <div className='box'>
+                <button onСlick={getLocation()}>Get Location</button>
                 <h1 className="city_name">{state.name}</h1>
                 <p className="city_deg">{state.temp}&deg;</p>
                 <h1 id='weather_icon' class="weather_icon"></h1>
