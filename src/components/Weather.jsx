@@ -1,63 +1,53 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Weather.css';
-import { React, useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 
-export default function Weather( {cityName} ) {
+export default function Weather() {
+  const [state, setState] = useState({});
+  const conditionArray = [
+    { id: 'Clouds', icon: "bi bi-clouds-fill" },
+    { id: 'Clear', icon: "bi bi-brightness-high-fill" },
+  ];
 
-    const [state, setState] = useState({});
-      const conditionArray = [
-        {id: 'Clouds', icon: "bi bi-clouds-fill"},
-        {id: 'Clear', icon: "bi bi-brightness-high-fill"}
-      ]
-      
-      useEffect(() => {
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=0295fdc4ce9abb29970fffef06a0775b&units=metric`;
-        axios.get(apiUrl).then((resp) => {
-          console.log(resp);
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async function (position) {
+          const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=67a024cab08218f14567e8fd82852989&units=metric`);
+          const data = await response.json();
+          console.log(position.coords.latitude, position.coords.longitude);
           setState(
-            {name: resp.data.name, // имя города
-            condition: resp.data.weather[0].main, // описание погоды
-            temp: (Math.round(resp.data.main.temp)), // температура
-            humidity: resp.data.main.humidity, // влажность
-            windSpeed: resp.data.wind.speed}) // скорость ветра
-        });
-      }, [setState]);
+            {
+              name: data.name, // имя города
+              condition: data.weather[0].main, // описание погоды
+              temp: (Math.round(data.main.temp)), // температура
+              humidity: data.main.humidity, // влажность
+              windSpeed: data.wind.speed
+            } // скорость ветра
+          )
+        },
+      )
+    }
+  }, [setState]);
 
-      function getLocation() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-          document.getElementById("location").innerHTML = "Геолокация не поддерживается.";
-        }
+  const weatherIcon = document.querySelectorAll('#weather_icon');
+
+  weatherIcon.forEach(element => {
+    for (let index = 0; index < conditionArray.length; index++) {
+      if (conditionArray[index].id === state.condition) {
+        element.className = conditionArray[index].icon;
       }
-    
-      function showPosition(position) {
-        var lat = position.coords.latitude;
-        var lon = position.coords.longitude;
-        document.getElementById("location").innerHTML = "Широта: " + lat + "<br>Долгота: " + lon;
-      }
-      
-    const weatherIcon = document.querySelectorAll('#weather_icon');
+    }
+  });
 
-    weatherIcon.forEach(element => {
-        for (let index = 0; index < conditionArray.length; index++) {
-            if (conditionArray[index].id === state.condition) {
-                element.className = conditionArray[index].icon;
-            }
-        }
-    });
-
-    return (
-        <div style={{display: "flex", justifyContent: "center"}}>
-            <div className='box'>
-                <button onСlick={getLocation()}>Get Location</button>
-                <h1 className="city_name">{state.name}</h1>
-                <p className="city_deg">{state.temp}&deg;</p>
-                <h1 id='weather_icon' class="weather_icon"></h1>
-                <p className="city_clouds">{state.condition}</p>
-            </div>
-        </div>
-    );
-};
-
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div className='box'>
+        <h1 className="city_name">{state.name}</h1>
+        <p className="city_deg">{state.temp}&deg;</p>
+        <i id='weather_icon' className="weather_icon"></i>
+        <p className="city_clouds">{state.condition}</p>
+      </div>
+    </div>
+  );
+}

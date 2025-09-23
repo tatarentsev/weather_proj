@@ -4,9 +4,9 @@ import Weather from './components/Weather';
 function App() {
   return (
     <div style={{display: "flex", gap: "30px", justifyContent: "center"}}>
-      <Weather cityName={'moscow'}/>
-      <Weather cityName={'krasnodar'}/>
-      <Weather cityName={'volgograd'}/>
+      <Weather />
+      {/* <Weather cityName={'krasnodar'}/> */}
+      {/* <Weather cityName={'volgograd'}/> */}
     </div>
   );
 }
