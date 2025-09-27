@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.center {
+    padding-left: calc(50% - 530px);
+    padding-right: calc(50% - 530px);
+}
+
+.box_start {
+    display: grid;
+}
+
+.box {
+    display: grid;
+    justify-items: center;
+    background-color: whitesmoke;
+    border-radius: 5%;
+    margin-top: 150px;
+    padding: 50px;
+}
+
+#weather_icon {
+    font-size: 100px;
+}
+
+#weather_icon_prognoz {
+    width: 48px;
+    font-size: 48px;
+}
+
+.city_name {
+    width: 150px;
+    font-size: 1.5em;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.city_name,
+.city_clouds {
+    border-bottom: 1px solid grey;
+}
+
+.city_deg {
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.city_clouds {
+    text-align: center;
+    font-size: 1.3em;
+    padding-top: 40px;
+}
+
+.main {
+    display: flex;
+    gap: 50px;
+
+    &__left_side {
+        padding-left: 18px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-radius: 20px;
+        box-shadow: 2px 5px 25px -3px #B4B4B440;
+
+        &_templ {
+            display: flex;
+            gap: 41px;
+            align-items: baseline;
+        }
+
+        &_temp {
+            font-weight: 500;
+            font-size: 96px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            color: #4793FF;
+        }
+
+        &_today {
+            color: #000000;
+            font-weight: 400;
+            font-size: 40px;
+            line-height: 100%;
+            letter-spacing: 0%;
+        }
+
+        &_time {
+            color: #939CB0;
+            font-weight: 400;
+            font-size: 25px;
+            line-height: 100%;
+            letter-spacing: 0%;
+        }
+    }
+
+    &__right_side {
+        padding-top: 49px;
+        padding-left: 39px;
+        display: grid;
+        gap: 36px;
+        width: 750px;
+        border-radius: 20px;
+        box-shadow: 2px 5px 25px -3px rgba(180, 180, 180, 0.2509803922);
+
+        &_box {
+            display: flex;
+            gap: 20px;
+        }
+
+        &_title {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            text-align: right;
+            color: #939CB0;
+        }
+
+        &_desc {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            color: #000000;
+        }
+    }
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    box-shadow: 2px 5px 25px -3px #B4B4B440;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-top: 50px;
+
+    &__box {
+        border-radius: 10px;
+        background-color: #4793FF33;
+        padding-top: 11px;
+        padding-left: 11px;
+        padding-right: 40px;
+    }
+
+    &__title {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        color: #000000;
+    }
+
+    &__max_temp {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 100%;
+        margin-bottom: 3px;
+        letter-spacing: 0%;
+        color: #000000;
+    }
+
+    &__min_temp {
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        color: #939CB0;
+    }
+
+    &__condition {
+        width: 128px;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        color: #939CB0;
+        margin-bottom: 5px;
+    }
+}
+
+@media(max-width: 768px) {
+    .center {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+
+    .main {
+        display: grid;
+        gap: 50px;
+        width: 400px;
+        justify-items: center;
+
+        &__left_side {
+            display: grid;
+            padding-left: 39px;
+            width: 350px;
+            justify-items: center;
+        }
+
+        &__right {
+            &_side {
+                padding-top: 20px;
+                gap: 25px;
+                width: 350px;
+
+                &_box {
+                    align-items: center;
+                }
+
+                &_title {
+                    margin: 0;
+                }
+
+                &_desc {
+                    margin: 0;
+                    width: 120px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .box_start {
+        display: grid;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .footer {
+        display: grid;
+        width: 350px;
+        border-radius: 20px;
+    }
+}
